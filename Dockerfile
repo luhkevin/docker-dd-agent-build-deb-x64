@@ -24,7 +24,7 @@ RUN curl -o /tmp/go1.3.3.linux-amd64.tar.gz https://storage.googleapis.com/golan
 
 RUN git config --global user.email "package@datadoghq.com" && \
     git config --global user.name "Debian Omnibus Package" && \
-    git clone https://github.com/DataDog/dd-agent-omnibus.git
+    git clone https://github.com/netsil/dd-agent-omnibus.git
 
 RUN git clone https://github.com/DataDog/integrations-extras.git
 RUN git clone https://github.com/DataDog/integrations-core.git
@@ -37,4 +37,5 @@ RUN apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 C7A7DA52
 RUN apt-get update
 
 VOLUME ["/dd-agent-omnibus/pkg"]
-ENTRYPOINT /bin/bash -l /dd-agent-omnibus/omnibus_build.sh
+ENTRYPOINT ["/bin/bash", "-l"]
+CMD ["/dd-agent-omnibus/omnibus_build.sh"]
